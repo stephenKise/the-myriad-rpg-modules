@@ -551,7 +551,6 @@ function city_creator_dohook($hookname,$args)
 							[$session['user']['name'],
 							$args['badguy']['creaturename'],
 							$args['badguy']['location']]
-						)
 					);
 				}
 			}
