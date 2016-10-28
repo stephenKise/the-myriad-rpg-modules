@@ -8,7 +8,7 @@
 		{
 			addnews(
 				"`6%s's `2pet %s `2was slain in battle today!`0", 
-				[$session['user']['name'], $allprefs['pettype']
+				[$session['user']['name'], $allprefs['pettype']]
 			);
 
 			$allprefs = get_allprefs();
