@@ -13,6 +13,7 @@ function changelog_getmoduleinfo()
         'settings' => [
             'infonav' => 'Do you want to display this changelog in the village?, bool| 1',
             'category' => 'What category should we list all changes under?, text| Changelog',
+            'default_user' => 'Default name to use of the changelog comes from id of 0?, text| Sytstem',
             'format' => 'How should we format each message?, text| `%%s `@%s`0`n`n',
             'Note that you `Q`bneed`b two &quot;%s&quot;`0 for the changlog to work properly!, note',
         ],
@@ -26,6 +27,7 @@ function changelog_install()
     module_addhook('village');
     module_addhook('header-about');
     module_addhook('newday-runonce');
+    module_addhook('translation-save');
     return true;
 }
 
@@ -87,6 +89,10 @@ function changelog_dohook($hook, $args)
                 "UPDATE $gamelog SET date = '$date' WHERE category = '$category'"
             );
             break;
+        case 'translation-save':
+            require_once('lib/gamelog.php');
+            gamelog(sprintf_translate("`2translated text in the `Q%s`2 section.", $args['uri']));
+            break;
     }
     return $args;
 }
@@ -128,8 +134,9 @@ function changelog_run() {
     while ($row = db_fetch_assoc($sql)) {
         output(
             get_module_setting('format'),
-            $row['name'],
-            $row['message']
+            $row['name'] ?: get_module_setting('default_user'),
+            $row['message'],
+            true
         );
     }
     page_footer();
