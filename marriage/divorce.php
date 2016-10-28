@@ -9,11 +9,9 @@ function marriage_divorce() {
 		$getpartner=get_partner(false);
 		$session['user']['marriedto'] = 0;
 		addnews(
-            sprintf_translate(
                 "`&%s`% and `&%s`% were divorced today...",
-                $session['user']['name'],
-                $getpartner
-            )
+                [$session['user']['name'],
+                $getpartner]
         );
 		debuglog("got divorced from $getpartner today.");
 		return;
@@ -30,11 +28,9 @@ function marriage_divorce() {
 	$mailmessagg=array("`^%s`@ has divorced you.`n`nYou get `^%s gold`@.",$session['user']['name'],$gold);
 	$t = array("`@Divorce!");
 	addnews(
-        sprintf_translate(
             "`&%s`0`% and `&%s`% were divorced today...",
-            $session['user']['name'],
-            $row['name']
-        )
+            [$session['user']['name'],
+            $row['name']]
     );
 	debuglog($session['user']['login']." got a divorce from {$row['name']}",$who,$session['user']['acctid']);
 	debuglog($session['user']['login']." got a divorce from {$row['name']}",$session['user']['acctid'],$who);

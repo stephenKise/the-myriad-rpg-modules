@@ -390,7 +390,10 @@ if ($op=="fight"){ $battle=true; }
 		 		$u['experience']-=$exploss;
 				output("You have lost %s experience",$exploss);
 				output("You start to come too a bit more, until your body hits the hard surface of the village square");
-				addnews("`GThe body of %s `Gwas seen being thrown from a Vaults Entrance.",$u['name']);
+				addnews(
+					"`GThe body of %s `Gwas seen being thrown from a Vaults Entrance.",
+					[$u['name']]
+				);
 				$time = date("Y-m-d H:i:s");
 			}elseif ($fightnum==2){
 				$u['hitpoints'] = 1;
@@ -399,7 +402,10 @@ if ($op=="fight"){ $battle=true; }
 				$u['experience']-=$exploss;
 				output("You have lost %s experience",$exploss);
 				output("You start to come too a bit more, until your body hits the hard surface of the village square");
-				addnews("%s `Gwas thrown bodily from a Vault.",$u['name']);
+				addnews(
+					"%s `Gwas thrown bodily from a Vault.",
+					[$u['name']]
+				);
 			}elseif ($fightnum==3){
 				$u['hitpoints'] = 1;
 				output("You can feel the God Nehebkau throw you bodily out of the Vault");
@@ -407,7 +413,10 @@ if ($op=="fight"){ $battle=true; }
 				$u['experience']-=$exploss;
 				output("You have lost %s experience",$exploss);
 				output("You start to come too a bit more, until your body hits the hard surface of the village square");
-				addnews("%s `Gwas hurled from a Vault by a God.",$u['name']);
+				addnews(
+					"%s `Gwas hurled from a Vault by a God.",
+					[$u['name']]
+				);
 			}
 			$u['hitpoints']=1;
 			$time = date("Y-m-d H:i:s");

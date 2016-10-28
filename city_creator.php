@@ -547,11 +547,10 @@ function city_creator_dohook($hookname,$args)
 				{
 					$args['handled'] = TRUE;
 					addnews(
-						sprintf_translate(
 							$row['citytext']['pvpwin'],
-							$session['user']['name'],
+							[$session['user']['name'],
 							$args['badguy']['creaturename'],
-							$args['badguy']['location']
+							$args['badguy']['location']]
 						)
 					);
 				}
@@ -566,12 +565,11 @@ function city_creator_dohook($hookname,$args)
 				{
 					$args['handled'] = TRUE;
 					addnews(
-						sprintf_translate(
 							$row['citytext']['pvploss'],
-							$session['user']['name'],
+							[$session['user']['name'],
 							$args['badguy']['creaturename'],
 							$args['badguy']['location'],
-							$args['taunt']
+							$args['taunt']]
 						)
 					);
 				}

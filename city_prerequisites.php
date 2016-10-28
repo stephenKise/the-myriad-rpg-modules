@@ -325,10 +325,9 @@ function city_prerequisites_run()
 			$session['user']['donationconfig'] = serialize($dconfig);
 
 			addnews(
-				sprintf_translate(
 					"`Q%s `qhas just bought access to `Q%s`q, maybe you should to?",
-					$session['user']['name'],
-					$row['cityname']
+					[$session['user']['name'],
+					$row['cityname']]
 				)
 			);
 

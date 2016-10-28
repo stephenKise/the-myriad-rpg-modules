@@ -73,7 +73,9 @@
 
 		output("`#%s `3has been banned for %s %s. They `iwere`i warned.", $username, $ban_days, $days);
 
-		addnews("`#%s `3has been `\$banned `3for `^%s %s`3. %s should have taken the %s as a sign.", $username, $ban_days, $days, translate_inline($row['sex']==1?'She':'He'), translate_inline($warns_count==1?'warning':'warnings'), TRUE);
+		addnews(
+			"`#%s `3has been `\$banned `3for `^%s %s`3. %s should have taken the %s as a sign.",
+			[$username, $ban_days, $days, translate_inline($row['sex']==1?'She':'He'), translate_inline($warns_count==1?'warning':'warnings'), TRUE]);
 
 		// Send banned YoM.
 		$msg = "`^Hello %s`^, This is your `$%s warning`^, and notice that you are henceforth `\$banned for %s %s`^.`n`nReason: `$%s`^.`n`n%s`n`nThank you.`n`nThe Staff";
@@ -93,7 +95,9 @@
 		//
 		output("`#%s `3has been sent a YoM, this was %s `$%s warning`3. %s in total.", $username, translate_inline($row['sex']==1?'her':'his'), get_suffix($warns_count), $allprefs['warnings']);
 
-		addnews("`#%s `3has been warned about their behaviour, this was their `$%s warning`3.", $username, get_suffix($warns_count), TRUE);
+		addnews(
+			"`#%s `3has been warned about their behaviour, this was their `$%s warning`3.",
+			[$username, get_suffix($warns_count), TRUE]);
 
 		// Send warning YoM.
 		$msg = "`^Hello %s`^, This is your `$%s warning`^.`n`nReason: `$%s`^.`n`n%s`n`n";

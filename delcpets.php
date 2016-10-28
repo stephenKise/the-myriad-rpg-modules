@@ -54,7 +54,10 @@ function delcpets_run(){
 			output("`Q`b`iDeleted ALL closed petitions!`b`i");
 			rawoutput("</center></big>");
 				debuglog("has deleted all closed petitions");
-			addnews("%s `Q`b`ihas deleted all closed petitions!`b`i",$session['user']['name']);
+			addnews(
+				"%s `Q`b`ihas deleted all closed petitions!`b`i",
+				[$session['user']['name']]
+			);
 			invalidatedatacache("petition_counts");
 			addnav("Go Back");
 			addnav("Grotto","superuser.php");

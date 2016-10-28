@@ -17,7 +17,9 @@ function medcontest_reset(){
 	$sql2="SELECT name FROM ".db_prefix("accounts")." WHERE acctid ='".$row['userid']."'";
     $result2 = db_query($sql2);
     $row2 = db_fetch_assoc($result2);
-    addnews("%s `7has won %s gems by finding %s stars and winning the Star Catching contest!",($row2['name']?$row2['name']:"`&No-One`7"),$firstplace,$medpoints);
+    addnews(
+        "%s `7has won %s gems by finding %s stars and winning the Star Catching contest!",
+        [($row2['name']?$row2['name']:"`&No-One`7"),$firstplace,$medpoints]);
     if ($row2['name']==$session['user']['name']){
 	    $session['user']['gems']+=$firstplace;
     }else{
@@ -32,7 +34,9 @@ function medcontest_reset(){
     $sql2="SELECT name FROM ".db_prefix("accounts")." WHERE acctid ='".$row['userid']."'";
     $result2 = db_query($sql2);
     $row2 = db_fetch_assoc($result2);
-    addnews("%s `7has placed second in the Star Catching contest by finding %s stars, winning %s gems!",($row2['name']?$row2['name']:"`&No-One`7"),$medpoints,$secondplace);
+    addnews(
+        "%s `7has placed second in the Star Catching contest by finding %s stars, winning %s gems!",
+        [($row2['name']?$row2['name']:"`&No-One`7"),$medpoints,$secondplace]);
     if ($row2['name']==$session['user']['name']){
 	    $session['user']['gems']+=$secondplace;
     }else{
@@ -45,7 +49,9 @@ function medcontest_reset(){
     $sql2="SELECT name FROM ".db_prefix("accounts")." WHERE acctid ='".$row['userid']."'";
     $result2 = db_query($sql2);
     $row2 = db_fetch_assoc($result2);
-    addnews("%s `7has placed third the Star Catching contest by finding %s stars, winning %s gems!",($row2['name']?$row2['name']:"`&No-One`7"),$medpoints,$thirdplace);
+    addnews(
+        "%s `7has placed third the Star Catching contest by finding %s stars, winning %s gems!",
+        [($row2['name']?$row2['name']:"`&No-One`7"),$medpoints,$thirdplace]);
     if ($row2['name']==$session['user']['name']){
 	    $session['user']['gems']+=$thirdplace;
     }else{

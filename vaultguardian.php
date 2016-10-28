@@ -146,7 +146,9 @@ function vaultguardian_dohook($hookname, $args){
 				$sql = "SELECT clanname FROM ".db_prefix("clans")." WHERE clanid=".$session['user']['clanid']."";
 				$result = db_query($sql);
 				$row = db_fetch_assoc($result);
-				addnews("`@The Dark Sorcerer `^%s`@ is angry with `^%s`@.", $sorcerer, $row['clanname']);
+				addnews(
+					"`@The Dark Sorcerer `^%s`@ is angry with `^%s`@.",
+					[$sorcerer, $row['clanname']]);
 				$msg = "::".translate_inline("found out that there wasn't enough gold in the vault to pay to the sorcerer for the guardian...");
 				injectcommentary("clan-".$session['user']['clanid'], "", $msg, false);
 			}
@@ -289,7 +291,9 @@ function vaultguardian_run(){
 			$sql = "SELECT clanname FROM ".db_prefix("clans")." WHERE clanid=".$session['user']['clanid']."";
 			$result = db_query($sql);
 			$row = db_fetch_assoc($result);
-			addnews("Something weird has been seen near the clan %s's clan hall", $row['clanname']);
+			addnews(
+				"Something weird has been seen near the clan %s's clan hall",
+				[$row['clanname']]);
 			$msg = sprintf("::hired a guardian to keep the clan savings safe.");
 			//injectcommentary("clan-".$session['user']['clanid'], "", $msg, false);			
 			set_module_objpref("clans", $session['user']['clanid'], "hasguardian", 1, "vaultguardian");
@@ -506,7 +510,9 @@ function vaultguardian_run(){
 			output("`&You took your %s and cut the beast's head off.`n`n", $session['user']['weapon']);
 			output("`@Wind starts blowing and a small hurricane takes all that is left of the beast and carries them away.`n`n");
 			output("`&You have now access to the clan vault!.");
-			addnews("`#%s `@managed `7to break into `#%s's `7clan vault. This might mean war...",$session['user']['name'], $clanname);
+			addnews(
+				"`#%s `@managed `7to break into `#%s's `7clan vault. This might mean war...",
+				[$session['user']['name'], $clanname]);
 			addnav("Continue","runmodule.php?module=vaultguardian&op=vault&clanid=".$clanid."&clanname=".$clanname."");
 		} elseif($defeat){
 			output("`n `$ You feel weak and tired. This battle can't be won.`n`n");
@@ -515,7 +521,9 @@ function vaultguardian_run(){
 			output("`&You `$ lose %s `&experience and all your gold you were carrying.", $session['user']['experience']*0.1);
 			$session['user']['experience']*=0.9;
 			$session['user']['gold']=0;
-			addnews("`#%s `7was `$ killed `7trying to break into `#%s's `7clan vault.",$session['user']['name'], $clanname);
+			addnews(
+				"`#%s `7was `$ killed `7trying to break into `#%s's `7clan vault.",
+				[$session['user']['name'], $clanname]);
 			addnav("Land of Shades","shades.php");
 		} else{
 			fightnav(false,false,"runmodule.php?module=vaultguardian&clanid=".$clanid."&clanname=".$clanname."");

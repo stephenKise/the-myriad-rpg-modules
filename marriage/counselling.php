@@ -27,7 +27,9 @@ switch($operation) {
 		addnav("To the Waiting Area","runmodule.php?module=marriage&op=counselling&op2=wait");
 		break;
 	case "wait":
-		addnews("%s`0`@ had to go to a Social Counsellor due to a rejected Marriage Proposal!",$session['user']['name']);
+		addnews(
+			"%s`0`@ had to go to a Social Counsellor due to a rejected Marriage Proposal!",
+			[$session['user']['name']]);
 		$allprefs=unserialize(get_module_pref('allprefs'));
 		$allprefs['counsel']=0;
 		set_module_pref('allprefs',serialize($allprefs));

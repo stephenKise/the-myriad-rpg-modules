@@ -155,7 +155,11 @@ if ($op=="leavecave"){
 				output("`n`n`\$Barca`^ steals all your gold.`n`n");
 				$exploss = round($session['user']['experience']*.05);
 				output("`b`4You lose `#%s experience because of cowardice`4.`b`n`n",$exploss);
-				addnews("%s`^ died from a punch because %s was too afraid to explore a `%C`3ave`^.",$session['user']['name'],translate_inline($session['user']['sex']?"she":"he"));
+				addnews(
+					"%s`^ died from a punch because %s was too afraid to explore a `%C`3ave`^.",
+					[$session['user']['name'],
+					translate_inline($session['user']['sex']?"she":"he")]
+				);
 				addnav("Daily news","news.php");
 				$session['user']['experience']-=$exploss;
 				$session['user']['alive'] = false;
@@ -404,7 +408,10 @@ if ($op=="leavecavenow3"){
 	jonescave_leave();	
 }
 if ($op=="cfinish") {
-	addnews("%s `^successfully recovered an artifact from a Secret `%C`3ave`^!",$session['user']['name']);
+	addnews(
+		"%s `^successfully recovered an artifact from a Secret `%C`3ave`^!",
+		[$session['user']['name']]
+	);
 	set_module_pref("cchiken",0);
 	set_module_pref("cavestage",0);
 	output("`^You sit down to rest and pull out the %s`^ and stare at it.",$ctreasure[get_module_pref("treasurenum")]);
@@ -573,43 +580,73 @@ if ($op=="cfinish") {
 		output("You are now recognized as a");
 		if (get_module_pref("artfinder")>9){
 			output("`5`bWorld Renowned Archaeologist`b`^!");
-			addnews("%s `^is now recognized as a `5`bWorld Renowned Archaeologist`b`^.",$name);
+			addnews(
+				"%s `^is now recognized as a `5`bWorld Renowned Archaeologist`b`^.",
+				[$name]
+			);
 		}
 		if (get_module_pref("artfinder")==9){
 			output("`6Dean of Archaeology`^!");
-			addnews("%s `^is now recognized as a `6Dean of Archaeology`^.",$name);			
+			addnews(
+				"%s `^is now recognized as a `6Dean of Archaeology`^.",
+				[$name]
+			);			
 		}
 		if (get_module_pref("artfinder")==8){
 			output("`QDirector of Archaeology`^!");
-			addnews("%s `^is now recognized as a `QDirector of Archaeology`^.",$name);			
+			addnews(
+				"%s `^is now recognized as a `QDirector of Archaeology`^.",
+				[$name]
+			);			
 		}
 		if (get_module_pref("artfinder")==7){
 			output("`&Senior Professor of Archaeology`^!");
-			addnews("%s `^is now recognized as a `&Senior Professor of Archaeology`^.",$name);			
+			addnews(
+				"%s `^is now recognized as a `&Senior Professor of Archaeology`^.",
+				[$name]
+			);			
 		}
 		if (get_module_pref("artfinder")==6){
 			output("`\$Professor of Archaeology`^!");
-			addnews("%s `^is now recognized as a `\$Professor of Archaeology`^.",$name);			
+			addnews(
+				"%s `^is now recognized as a `\$Professor of Archaeology`^.",
+				[$name]
+			);			
 		}
 		if (get_module_pref("artfinder")==5){
 			output("`%Associate Professor of Archaeology`^!");
-			addnews("%s `^is now recognized as an `%Associate Professor of Archaeology`^.",$name);			
+			addnews(
+				"%s `^is now recognized as an `%Associate Professor of Archaeology`^.",
+				[$name]
+			);			
 		}
 		if (get_module_pref("artfinder")==4){
 			output("`!Assistant Professor of Archaeology`^!");
-			addnews("%s `^is now recognized as an `!Assistant Professor of Archaeology`^.",$name);			
+			addnews(
+				"%s `^is now recognized as an `!Assistant Professor of Archaeology`^.",
+				[$name]
+			);			
 		}
 		if (get_module_pref("artfinder")==3){
 			output("`#Teaching Assistant of Archaeology`^!");
-			addnews("%s `^is now recognized as a `#Teaching Assistant of Archaeology`^.",$name);			
+			addnews(
+				"%s `^is now recognized as a `#Teaching Assistant of Archaeology`^.",
+				[$name]
+			);			
 		}
 		if (get_module_pref("artfinder")==2){
 			output("`@Graduate Student of Archaeology`^!");
-			addnews("%s `^is now recognized as a `@Graduate Student of Archaeology`^.",$name);			
+			addnews(
+				"%s `^is now recognized as a `@Graduate Student of Archaeology`^.",
+				[$name]
+			);			
 		}
 		if (get_module_pref("artfinder")==1){
 			output("`^Student of Archaeology`^!");
-			addnews("%s `^is now recognized as a `bStudent of Archaeology`b.",$name);			
+			addnews(
+				"%s `^is now recognized as a `bStudent of Archaeology`b.",
+				[$name]
+			);			
 		}
 		if (get_module_pref("artfinder")<10) output("If you are able to repeat your accomplishments, you will receive even greater recognition.`n`n");
 		output("In addition, a grant has been issued to you by the `%World Society of Archaeologists`^ in the form of `b%s gold`b.`n`n",$gold);
@@ -798,7 +835,9 @@ if ($battle){
 			$session['user']['gold']+=$goldgain;
 			output("`@You gain `^%s gold`@.`n`n",$goldgain);
 			output("`c`\$`bTo Be Continued...`c`b`n`n`n");
-			addnews("%s taught a thug posing as a forest guide a lesson.",$session['user']['name']);
+			addnews(
+				"%s taught a thug posing as a forest guide a lesson.",
+				[$session['user']['name']]);
 			jonescave_leave();
 			addnav("Back to the Forest","forest.php");
 		}
@@ -810,7 +849,10 @@ if ($battle){
 			output("`@You gain `#%s experience`@.`n`n",$expgain);
 			output("`^The eyes of the `&Statue`^ were made of `%gems`^.  You give one to your companions and keep one for yourself.`n`n");
 			$session['user']['gems']++;
-			addnews("%s defeated a `&statue`^ in the `2deep forest`^.",$session['user']['name']);
+			addnews(
+				"%s defeated a `&statue`^ in the `2deep forest`^.",
+				[$session['user']['name']]
+			);
 			output("You all rest and share a healing potion.  You feel like you may be ready to journey on!`n`n");
 			output("Soon enough, you're at the entrance to the `%C`3ave`^ on the map. `n`n What is your next step?");
 			$session['user']['hitpoints']=$session['user']['maxhitpoints'];
@@ -829,7 +871,10 @@ if ($battle){
 			output("`@You gain `#%s experience`@.`n`n",$expgain);
 			output("`^You save the `\$venom`^ and eventually sell it for 1250 gold!`n`n");
 			$session['user']['gold']+=1250;
-			addnews("%s `^defeated a hoard of spiders in the `%C`3ave`^.",$session['user']['name']);
+			addnews(
+				"%s `^defeated a hoard of spiders in the `%C`3ave`^.",
+				[$session['user']['name']]
+			);
 			output("You both share a healing potion, but it isn't able to heal you fully.");
 			output("You feel like you may be ready to journey on!`n`n");
 			output("Are you ready to resume your journey deeper into the `%C`3ave`^?");
@@ -879,7 +924,10 @@ if ($battle){
 			$session['user']['gold']=0;
 			set_module_pref("cchicken",1);
 			$session['user']['specialinc']="";
-			addnews("%s `@was defeated by a thug instead of going on an adventure.",$session['user']['name'],$taunt);
+			addnews(
+				"%s `@was defeated by a thug instead of going on an adventure.",
+				[$session['user']['name'],$taunt]
+			);
 		}
 		if (get_module_pref("monsternum")==2){
 			$exploss = round($session['user']['experience']*.04);
@@ -894,7 +942,9 @@ if ($battle){
 			set_module_pref("cchicken",1);
 			$session['user']['specialinc']="";
 			apply_buff('backup', array());
-			addnews("%s `^was defeated by a huge `&Statue`^ in the `@deep jungle`^.",$session['user']['name'],$taunt);
+			addnews(
+				"%s `^was defeated by a huge `&Statue`^ in the `@deep jungle`^.",
+				[$session['user']['name'],$taunt]);
 		}
 		if (get_module_pref("monsternum")==3){
 			$exploss = round($session['user']['experience']*.05);
@@ -909,7 +959,9 @@ if ($battle){
 			$session['user']['specialinc']="";
 			apply_buff('spiderbites', array());
 			apply_buff('zatipolio', array());
-			addnews("%s `^was defeated by a `)H`\$uge `)S`\$pider`^ in a secret `%C`3ave`^.",$session['user']['name'],$taunt);
+			addnews(
+				"%s `^was defeated by a `)H`\$uge `)S`\$pider`^ in a secret `%C`3ave`^.",
+				[$session['user']['name'],$taunt]);
 		}
 		if (get_module_pref("monsternum")==4){
 			$exploss = round($session['user']['experience']*.07);
@@ -922,7 +974,9 @@ if ($battle){
 			$session['user']['experience']-=$exploss;
 			$session['user']['gold']=0;
 			set_module_pref("cchicken",3);
-			addnews("%s `@was hit by an arrow and died in a secret `%C`3ave`^.",$session['user']['name']);
+			addnews(
+				"%s `@was hit by an arrow and died in a secret `%C`3ave`^.",
+				[$session['user']['name']]);
 		}
 		if (get_module_pref("monsternum")==5){
 			set_module_pref("cavestage",0);
@@ -937,7 +991,9 @@ if ($battle){
 			$session['user']['experience']-=$exploss;
 			$session['user']['gold']=0;
 			set_module_pref("cavestage",0);
-			addnews("%s `@was run over by a huge boulder leaving the `%C`3ave`^ with an amazing artifact.  It is lost forever.",$session['user']['name']);
+			addnews(
+				"%s `@was run over by a huge boulder leaving the `%C`3ave`^ with an amazing artifact.  It is lost forever.",
+				[$session['user']['name']]	);
 		}
 	}else{
 		require_once("lib/fightnav.php");

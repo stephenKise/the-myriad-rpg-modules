@@ -139,7 +139,10 @@ viewcommentary("chapel", "Speak with those gathered,", 20, "says");
 		$sql = "SELECT name,sex FROM ".db_prefix("accounts")." WHERE acctid='$target' AND locked=0";
 		$res = db_query($sql);
 		$row = db_fetch_assoc($res);
-		addnews("`&%s`0`& and %s`0`& were joined today, in joyous matrimony.", $session['user']['name'],$row['name']);
+		addnews(
+			"`&%s`0`& and %s`0`& were joined today, in joyous matrimony.",
+			[$session['user']['name'],$row['name']]
+		);
 		$first = ($session['user']['sex']?translate_inline("Wife"):translate_inline("Husband"));
 		$second = ($row['sex']?translate_inline("Wife"):translate_inline("Husband"));
 		if (get_module_setting("sacred")==1){
@@ -217,8 +220,12 @@ viewcommentary("chapel", "Speak with those gathered,", 20, "says");
 			$sql = "UPDATE " . db_prefix("accounts") . " SET charm=".$row['charm']." WHERE acctid='$target'";
 			db_query($sql);
 		}
-		addnews("`&%s`0`& got a marriage proposal from %s`0`&, which %s`0`& rejected, seeing %s`0`& as '`@Unfit for Marriage.`&'",$session['user']['name'],$row['name'],$session['user']['name'],$row['name']);
-		addnews("`&%s`0`& is currently moping around the inn.",$row['name']);
+		addnews(
+			"`&%s`0`& got a marriage proposal from %s`0`&, which %s`0`& rejected, seeing %s`0`& as '`@Unfit for Marriage.`&'",
+			[$session['user']['name'],$row['name'],$session['user']['name'],$row['name']]);
+		addnews(
+			"`&%s`0`& is currently moping around the inn.",
+			[$row['name']]);
 		$x = ($row['sex']?translate_inline("she's"):translate_inline("he's"));
 		output("`@You say `3\"`#I don't want to get married to `^%s`#... It's a very sweet gesture, but %s just not my type.`3\"",$row['name'],$x);
 		//Added cost<=0 line to prevent people from getting to keep/sell when the ring is free

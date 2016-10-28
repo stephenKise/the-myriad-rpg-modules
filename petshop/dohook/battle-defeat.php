@@ -6,7 +6,10 @@
 		$losechance = rand(1,get_module_setting('petchance'));
 		if( get_module_setting('battlelose') == 1 && $losechance == 1 )
 		{
-			addnews("`6%s's `2pet %s `2was slain in battle today!`0", $session['user']['name'], $allprefs['pettype']);
+			addnews(
+				"`6%s's `2pet %s `2was slain in battle today!`0", 
+				[$session['user']['name'], $allprefs['pettype']
+			);
 
 			$allprefs = get_allprefs();
 			set_module_pref('allprefs',serialize($allprefs));

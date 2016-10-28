@@ -86,7 +86,9 @@ function stonehenge_runevent($type)
             $session['user']['hitpoints']=0;
             $session['user']['experience']*=0.95;
             addnav("Daily News","news.php");
-            addnews("%s has been gone for a while, and those who have looked for " . ($session['user']['sex'] ? "her" : "him") . " do not come back.",$session['user']['name']);
+            addnews(
+                "%s has been gone for a while, and those who have looked for %s do not come back.",
+                [$session['user']['name'], ($session['user']['sex'] ? "her" : "him")]);
             break;
         case 3:
             output("When the light clears, there is the body of a foolhardy traveller that decided to chance the powers of Stonehenge.`n`n");
@@ -100,7 +102,9 @@ function stonehenge_runevent($type)
             $gold = $session['user']['gold'];
             $session['user']['gold'] = 0;
             addnav("Daily News","news.php");
-            addnews("The body of %s was found lying in an empty clearing.",$session['user']['name']);
+            addnews(
+                "The body of %s was found lying in an empty clearing.",
+                [$session['user']['name']]);
             debuglog("lost $gold dying at Stonehenge");
             break;
         case 4:

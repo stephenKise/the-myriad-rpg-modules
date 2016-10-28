@@ -161,10 +161,9 @@ function dwellings_plunder_run(){
 								$session['user']['alive']=0;
 								$session['user']['hitpoints']=0;
 								addnews(
-									sprintf_translate(
 										"%s`^ tried to plunder the dwelling '%s`^' but ran into a trap and got killed!",
-										$session['user']['name'],
-										$plunder['name']
+										[$session['user']['name'],
+										$plunder['name']]
 									)
 								);
 								$session['user']['specialmisc']='';
@@ -247,10 +246,9 @@ function dwellings_plunder_run(){
 			include("battle.php");
 			if ($victory){ //no exp at all for such a foul act
 				addnews(
-					sprintf_translate(
 						"%s`^ has somehow survived a failed plunder at the dwelling '%s`^'",
-						$session['user']['name'],
-						$plunder['name']
+						[$session['user']['name'],
+						$plunder['name']]
 					)
 				);
 				unsuspend_buffs('allowintrain',"You feel that time and the energies are now flowing normally again.");
@@ -276,11 +274,10 @@ function dwellings_plunder_run(){
 				$session['user']['gold']=0;
 				debuglog("lost $exploss experience and all gold while plundering.");
 				addnews(
-					sprintf_translate(
 						"%s`^ has been killed by %s`^ while trying to plunder the dwelling '%s`^'",
-						$session['user']['name'],
+						[$session['user']['name'],
 						$plunder['residentname'],
-						$plunder['name']
+						$plunder['name']]
 					)
 				);
 				require_once("lib/systemmail.php");

@@ -454,7 +454,9 @@ function marriage_general() {
 		$sql = "SELECT name,sex FROM ".db_prefix("accounts")." WHERE acctid='$ac' AND locked=0";
 		$res = db_query($sql);
 		$row = db_fetch_assoc($res);
-		addnews("`&%s`0`& and %s`0`& were joined today, in joyous matrimony.", $session['user']['name'],$row['name']);
+		addnews(
+			"`&%s`0`& and %s`0`& were joined today, in joyous matrimony.",
+			[$session['user']['name'],$row['name']]);
 		$first = ($session['user']['sex']?translate_inline("wife"):translate_inline("husband"));
 		$second = ($row['sex']?translate_inline("wife"):translate_inline("husband"));
 		output("`^%s `3says \"`&And I pronounce thee %s and %s.. yada yada.`3\"",$n,$first,$second);
@@ -504,8 +506,12 @@ function marriage_general() {
 			$sql = "UPDATE " . db_prefix("accounts") . " SET charm=".$row['charm']." WHERE acctid='$ac'";
 			db_query($sql);
 		}
-		addnews("`&%s`0`& got a marriage proposal from %s`0`&, which %s`0`& rejected, seeing %s`0`& as '`@Unfit for Marriage.`&'",$session['user']['name'],$row['name'],$session['user']['name'],$row['name']);
-		addnews("`&%s`0`& is currently moping around the inn.",$row['name']);
+		addnews(
+			"`&%s`0`& got a marriage proposal from %s`0`&, which %s`0`& rejected, seeing %s`0`& as '`@Unfit for Marriage.`&'",
+			[$session['user']['name'],$row['name'],$session['user']['name'],$row['name']]);
+		addnews(
+			"`&%s`0`& is currently moping around the inn.",
+			[$row['name']]);
 		$x = ($row['sex']?translate_inline("she's"):translate_inline("he's"));
 		output("`@You say `3\"`&I don't want to marry %s`0`&...%s...not my type..`3\"",$row['name'],$x);
 		if (get_module_setting('cansell')!=1) {
@@ -545,7 +551,9 @@ function marriage_general() {
 		$mailmessage=array(translate_inline("%s`0`@ has divorced you."),$session['user']['name']);
 		$mailmessagg=array(translate_inline("%s`0`@ has divorced you.`nYou get %s gold."),$session['user']['name'],$session['user']['gold']);
 		$t = translate_inline("`@Divorce!");
-		addnews("`&%s`0`% and %s`0`% were divorced today...", $session['user']['name'],$row['name']);
+		addnews(
+			"`&%s`0`% and %s`0`% were divorced today...",
+			[$session['user']['name'],$row['name']]);
 		$msg = translate_inline("`^%s `@takes all of your gold.. \"`&I need to comfort %s`0`&...`^\"");
 		if (get_module_setting('dmoney')==1&&$session['user']['gold']>0) {
 			$sql = "UPDATE " . db_prefix("accounts") . " SET gold=gold + ".$session['user']['gold']." WHERE acctid='$who'";
@@ -719,7 +727,9 @@ function marriage_counselling() {
 		villagenav();
 		addnav("To the waiting Area","runmodule.php?module=marriage&op=counselling&ty=wait");
 	} elseif ($ty=='wait') {
-		addnews("%s`0`@ had to go to a Social Counsellor, due to a rejected Marriage Proposal!`&",$session['user']['name']);
+		addnews(
+			"%s`0`@ had to go to a Social Counsellor, due to a rejected Marriage Proposal!`&",
+			[$session['user']['name']]);
 		set_module_pref('counsel',0);
 		output("`@Sitting on a stuffed bear, you study the room and it's paintings, many of which you feel you have seen before.");
 		output("`nOne is of a Green Dragon fighting a constant battle, and yet another contains a scene of a street hawker....");

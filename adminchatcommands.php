@@ -71,12 +71,18 @@ function adminchatcommands_dohook($hookname, $args){
 				if(strpos($line, "/afk") !== false){
 					$args["commentline"] = ":`^is now AFK!";
 					if ($an)
-						addnews($session['user']['name']." `^is AFK and will be back shortly.");
+						addnews(
+							"`Q%s `^is AFK and will be back shortly.",
+							[$session['user']['name']]
+						);
 				}
 				if(strpos($line, "/back") !== false){
 					$args["commentline"] = ":`^is no longer AFK.";
 					if ($bn)
-						addnews($session['user']['name']." `^is now back.");
+						addnews(
+							"`Q%s `^is now back.",
+							[$session['user']['name']]
+						);
 				}
 				if((strpos($line, "/ooc") !== false)){
                     $emcolor = get_module_pref("user_ooccolor");

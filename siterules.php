@@ -110,7 +110,9 @@ function siterules_run(){
 	
 	if ($op=="accept"){
 		require_once("lib/addnews.php");
-		addnews("`i`@Everyone welcome `&{$session['user']['name']}`@, the newest member of the Myriad!`i");
+		addnews(
+			"`i`@Everyone welcome `&%s`@, the newest member of the Myriad!`i",
+			[$session['user']['name']]);
 		increment_module_pref("hasread");
 		require_once("lib/redirect.php");
 		redirect("runmodule.php?module=siterules");

@@ -144,7 +144,9 @@
 					output('However, the %s `2suddenly grows fearful and snaps at your hand before taking off into the forest!`n`n', $row['pettype']);
 					output('As you nurse the wound on your wrist, you curse the animal.`0`n`n');
 
-					addnews('`@%s `2got too close to a wild %s `2and was hurt.`0', $session['user']['name'], $row['pettype']);
+					addnews(
+						'`@%s `2got too close to a wild %s `2and was hurt.`0',
+						[$session['user']['name'], $row['pettype']]);
 
 					$session['user']['hitpoints'] -= round($session['user']['hitpoints'] * 0.15);
 
@@ -221,22 +223,30 @@
 
 			if( $type == 'forest' )
 			{
-				addnews('`@%s `2abandoned his %s `2in the forest today for a %s `2that %s found!`0', $session['user']['name'], $allprefs['pettype'], $row['pettype'], genders($session['user']['sex'], 2));
+				addnews(
+					'`@%s `2abandoned his %s `2in the forest today for a %s `2that %s found!`0',
+					[$session['user']['name'], $allprefs['pettype'], $row['pettype'], genders($session['user']['sex'], 2)]);
 			}
 			else
 			{
-				addnews('`@%s `2abandoned his %s `2whilst travelling today for a %s `2that %s found!`0', $session['user']['name'], $allprefs['pettype'], $row['pettype'], genders($session['user']['sex'], 2));
+				addnews(
+					'`@%s `2abandoned his %s `2whilst travelling today for a %s `2that %s found!`0',
+					[$session['user']['name'], $allprefs['pettype'], $row['pettype'], genders($session['user']['sex'], 2)]);
 			}
 		}
 		else
 		{
 			if( $type == 'forest' )
 			{
-				addnews('`@%s `2discovered a `@%s `2in the forest today and kept %s as a pet!`0', $session['user']['name'], $row['pettype'], genders($allprefs['petgender'], 3));
+				addnews(
+					'`@%s `2discovered a `@%s `2in the forest today and kept %s as a pet!`0',
+					[$session['user']['name'], $row['pettype'], genders($allprefs['petgender'], 3)]);
 			}
 			else
 			{
-				addnews('`@%s `2discovered a `@%s `2whilst travelling today and kept %s as a pet!`0', $session['user']['name'], $row['pettype'], genders($allprefs['petgender'], 3));
+				addnews(
+					'`@%s `2discovered a `@%s `2whilst travelling today and kept %s as a pet!`0',
+					[$session['user']['name'], $row['pettype'], genders($allprefs['petgender'], 3)]);
 			}
 
 			if( $row['petcharm'] > 0 )
@@ -263,11 +273,15 @@
 		{
 			if( $type == 'forest' )
 			{
-				addnews('`@%s `2gave up chasing a wild %s `2in the forest.`0', $session['user']['name'], $row['pettype']);
+				addnews(
+					'`@%s `2gave up chasing a wild %s `2in the forest.`0',
+					[$session['user']['name'], $row['pettype']]);
 			}
 			else
 			{
-				addnews('`@%s `2gave up chasing a wild %s `2while travelling.`0', $session['user']['name'], $row['pettype']);
+				addnews(
+					'`@%s `2gave up chasing a wild %s `2while travelling.`0',
+					[$session['user']['name'], $row['pettype']]);
 			}
 		}
 		$session['user']['specialinc'] = '';
@@ -298,7 +312,9 @@
 
 			output('`n`nYou decide to just let %s keep it. After all, what harm could a %s `2possibly do?`0`n', genders($allprefs['petgende'], 3), $special[$key]);
 
-			addnews('`@%s`2\'s pet %s `2found a %s `2in the forest.`0', $session['user']['name'], $allprefs['pettype'], $special[$key]);
+			addnews(
+				'`@%s`2\'s pet %s `2found a %s `2in the forest.`0',
+				[$session['user']['name'], $allprefs['pettype'], $special[$key]]);
 		}
 		else
 		{

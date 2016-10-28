@@ -132,7 +132,10 @@
 					else
 					{
 						output("`^You can't afford to feed your pet today! As a result, %s has run away!`0`n", genders($allprefs['petgender'], 2));
-						addnews("`3%s`2's pet ran away today due to neglect!`0", $session['user']['name']);
+						addnews(
+							"`3%s`2's pet ran away today due to neglect!`0",
+							[$session['user']['name']]
+						);
 						$allprefs = get_allprefs();
 					}
 				}

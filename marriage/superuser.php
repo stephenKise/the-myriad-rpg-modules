@@ -148,7 +148,9 @@ case "divorce":
 		$mail2=array("`^By Royal Decree, your marriage to `@%s`^ has been annulled by `&%s`^.",$name1,$suname);
 		systemmail($id1,$t,$mail1);
 		systemmail($id2,$t,$mail2);
-		addnews("`^The marriage between `&%s`^ and `&%s`^ has been annulled.",$name1,$name2);
+		addnews(
+			"`^The marriage between `&%s`^ and `&%s`^ has been annulled.",
+			[$name1,$name2]);
 		output("`^YoMs have been sent to `&%s`^ and `&%s`^ indicating that you have annulled their marriage. An announcement will be made in the news.`n`n",$name1,$name2);
 	}else output("`^You have annulled the marriage of `&%s`^ and `&%s`^ without sending them a message. No announcement will be made in the news.",$name1,$name2);
 	debuglog("The annullment of the marriage between {$name1} and {$name2} was processed by {$suname}");

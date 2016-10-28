@@ -73,7 +73,9 @@ function mysterycave_run() {
 			output("You are blinded by the bright light of a new day as you enter the cave. You stumble and fall like an idiot. Luckly, you still have the new day.");
 			$session['user']['lasthit'] = "0000-00-00 00:00";
 			$session['user']['restorepage'] = "forest.php";
-			addnews(" %s found the fabled New Day Cave!",$session['user']['name']);
+			addnews(
+				" %s found the fabled New Day Cave!",
+				[$session['user']['name']]);
 			break;
 
 			case 2:
@@ -87,7 +89,9 @@ function mysterycave_run() {
 			case 3:
 			output ("You see a dim light in the distance. As you walk, you realize you are in the fabled old day cave! You have lost all of your forest fights... Maybe you should go take a nap.");
 			$session['user']['turns'] = 0;
-			addnews(" %s was last seen sleeping in the forest like a baby.",$session['user']['name']);
+			addnews(
+				" %s was last seen sleeping in the forest like a baby.",
+				[$session['user']['name']]);
 			break;
 
 			case 4:
@@ -100,7 +104,9 @@ function mysterycave_run() {
 			case 5:
 			$name = get_module_setting("name");
 			output ("You look walk through the cave and see a bright new light. Thinking it's a new day, you run toward it, only to see %s mooning you. Disgusted, you walk away",$name);
-			addnews(" %s was last seen being mooned in the forest.",$session['user']['name']);
+			addnews(
+				" %s was last seen being mooned in the forest.",
+				[$session['user']['name']]);
 			break;
 			
 			case 6:
