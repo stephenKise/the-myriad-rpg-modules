@@ -47,7 +47,7 @@ function git_dohook($hook, $args)
                     require_once('lib/gamelog.php');
                     gamelog($core, $category);
                 }
-                $modules = shell_exec('cd modules && git log -1 --format="%b (<a href=\"http://github.com/stephenKise/xythen-modules/commit/%h\">%h</a>)"');
+                $modules = shell_exec('cd modules && git log -1 --format="%b (<a href=\"http://github.com/stephenKise/the-myriad-rpg-modules/commit/%h\">%h</a>)"');
                 $sql = db_query("SELECT logid FROM $gamelog WHERE message = '$modules' LIMIT 1");
                 if (db_num_rows($sql) == 0) {
                     require_once('lib/gamelog.php');
