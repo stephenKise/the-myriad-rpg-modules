@@ -33,23 +33,25 @@ function git_dohook($hook, $args)
     switch ($hook) {
         case 'superuser':
             global $session;
-            $gamelog = db_prefix('gamelog');
-            $sql = db_query("SELECT message FROM $gamelog ORDER BY logid+0 DESC LIMIT 1");
-            $row = db_fetch_assoc($sql);
             if ($session['user']['superuser'] & SU_MANAGE_MODULES) {
                 addnav('Mechanics');
-                addnav('Git Pull', 'superuser.php?git=pull');
-                require_once('lib/gamelog.php');
+                addnav('Pull LotGD Source', 'superuser.php?git=pull');
                 if (httpget('git') == 'pull') {
                     shell_exec('git pull');
-                    $output = shell_exec('git log --format=%B -1');
-                    $output = explode(PHP_EOL, $output);
-                    unset($output[0]);
-                    $output = trim(implode(PHP_EOL, $output));
-                    if ($output != $row['message']) {
-                        debug($row['message']);
-                        gamelog($output, get_module_setting('category', 'changelog'));
-                    }
+                }
+                $category = get_module_setting('category', 'changelog');
+                $gamelog = db_prefix('gamelog');
+                $core = shell_exec('git log -1 --format="%b (<a href=\"http://github.com/stephenKise/Legend-of-the-Green-Dragon/commit/%h\">%h</a>)"');
+                $sql = db_query("SELECT logid FROM $gamelog WHERE message = '$core' LIMIT 1");
+                if (db_num_rows($sql) == 0) {
+                    require_once('lib/gamelog.php');
+                    gamelog($core, $category);
+                }
+                $modules = shell_exec('cd modules && git log -1 --format="%b (<a href=\"http://github.com/stephenKise/xythen-modules/commit/%h\">%h</a>)"');
+                $sql = db_query("SELECT logid FROM $gamelog WHERE message = '$modules' LIMIT 1");
+                if (db_num_rows($sql) == 0) {
+                    require_once('lib/gamelog.php');
+                    gamelog($modules, $category);
                 }
             }
             break;
