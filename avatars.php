@@ -48,8 +48,8 @@ function avatars_dohook($hookname,$args){
 	switch($hookname){
 		case "biotop":
 			if (get_module_pref("user_showavatar")) {
-				avatars_resizeshow($args['acctid'], $args['name']);
-			}
+				avatars_resizeshow($args['acctid'], $args['name']);			
+}
 		break;
 		case "footer-prefs":
 			$user_avatar = get_module_pref("user_avatar");
@@ -76,9 +76,11 @@ function avatars_dohook($hookname,$args){
 
 function avatars_resizeshow($acctid, $name) {
 	require_once("lib/sanitize.php");
-	$avatar = get_module_pref("mostrecent_avatar","avatars",$acctid);
-	$approved = get_module_pref("approved","avatars",$acctid);
-	
+	$avatar = get_module_pref("user_avatar","avatars",$acctid);
+	$approved = true;
+	if (get_module_setting('picApproved') == 1) {
+		$approved = get_module_pref("approved","avatars",$acctid);
+	}	
 	$avatar = stripslashes(preg_replace("'[\"\'\\><@?*&#; ]'","",$avatar));
 	
 	if ($avatar && $approved){
