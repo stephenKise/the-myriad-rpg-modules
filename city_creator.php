@@ -569,7 +569,7 @@ function city_creator_dohook($hookname,$args)
 							$args['badguy']['creaturename'],
 							$args['badguy']['location'],
 							$args['taunt']]
-						)
+						
 					);
 				}
 			}
