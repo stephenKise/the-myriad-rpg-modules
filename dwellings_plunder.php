@@ -248,7 +248,6 @@ function dwellings_plunder_run(){
 						"%s`^ has somehow survived a failed plunder at the dwelling '%s`^'",
 						[$session['user']['name'],
 						$plunder['name']]
-					)
 				);
 				unsuspend_buffs('allowintrain',"You feel that time and the energies are now flowing normally again.");
 				require_once("lib/systemmail.php");
@@ -277,7 +276,6 @@ function dwellings_plunder_run(){
 						[$session['user']['name'],
 						$plunder['residentname'],
 						$plunder['name']]
-					)
 				);
 				require_once("lib/systemmail.php");
 				systemmail($plunder['acctid'],array("Failed Plunder"),array("`^The dwelling where you slept was attacked but you killed the intruder %s`^ and saved the coffers.",$session['user']['name']));
