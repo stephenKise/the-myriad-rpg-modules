@@ -24,7 +24,7 @@ function namechange_getmoduleinfo(){
 function namechange_install(){
 	module_addhook("village");
 	module_addhook("changesetting");
-	module_addhook("lastnames");
+//	module_addhook("lastnames");
 	return true;
 }
 function namechange_uninstall(){
