@@ -164,7 +164,6 @@ function dwellings_plunder_run(){
 										"%s`^ tried to plunder the dwelling '%s`^' but ran into a trap and got killed!",
 										[$session['user']['name'],
 										$plunder['name']]
-									)
 								);
 								$session['user']['specialmisc']='';
 								addnav("Return");
