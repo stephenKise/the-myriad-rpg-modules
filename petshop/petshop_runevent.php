@@ -239,14 +239,14 @@
 			if( $type == 'forest' )
 			{
 				addnews(
-					'`@%s `2discovered a `@%s `2in the forest today and kept %s as a pet!`0',
-					[$session['user']['name'], $row['pettype'], genders($allprefs['petgender'], 3)]);
+					'`@%s `2discovered a `@%s `2in the forest today!`0',
+					[$session['user']['name'], $row['pettype']]);
 			}
 			else
 			{
 				addnews(
-					'`@%s `2discovered a `@%s `2whilst travelling today and kept %s as a pet!`0',
-					[$session['user']['name'], $row['pettype'], genders($allprefs['petgender'], 3)]);
+					'`@%s `2discovered a `@%s `2whilst travelling today!`0',
+					[$session['user']['name'], $row['pettype']]);
 			}
 
 			if( $row['petcharm'] > 0 )
@@ -300,7 +300,7 @@
 				break;
 
 				case 2:
-					output('`@%s `2sniffs the ground nearby and starts to dig. A short while later %s pulls out a %s`2.', $allprefs['petname'], genders($allprefs['petgende'], 2), $special[$key]);
+					output('`@%s `2sniffs the ground nearby and starts to dig. A short while later %s pulls out a %s`2.', $allprefs['petname'], genders($allprefs['petgender'], 2), $special[$key]);
 				break;
 
 				case 3:
