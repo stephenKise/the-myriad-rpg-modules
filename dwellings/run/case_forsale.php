@@ -1,4 +1,4 @@
-<?
+<?php
 
 //translation readied "buy it" found by Gucky2000
 
