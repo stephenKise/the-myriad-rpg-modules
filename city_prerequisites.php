@@ -328,7 +328,6 @@ function city_prerequisites_run()
 					"`Q%s `qhas just bought access to `Q%s`q, maybe you should to?",
 					[$session['user']['name'],
 					$row['cityname']]
-				)
 			);
 
 			addnav('Return');
