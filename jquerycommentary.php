@@ -116,6 +116,7 @@ function jquerycommentary_dohook($hook, $args)
                     var whosTyping = '<br />';
                     var isInputEmpty = 0;
                     $(document).ready(function(){
+                        $('#inputinsertcommentary').attr('maxlength', 1000);
                         $('#inputinsertcommentary').val(localStorage['commentaryForm']);
                         $('#commentaryform .button').hide();
                         if (typeof renewWhosHere == 'function') {
